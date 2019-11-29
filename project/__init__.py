@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from flask_restful import Resource, Api
+import os 
 
 #instantiate the app
 app = Flask(__name__)
@@ -7,9 +8,10 @@ app = Flask(__name__)
 api = Api(app)
 
 #set config
+# app_settings = os.getenv('APP_SETTINGS')
 app.config.from_object('project.config.DevelopmentConfig')
 
-class Ping(Resource):
+class Users(Resource):
 
     def get(self):
         return {
@@ -17,4 +19,4 @@ class Ping(Resource):
             'message': 'pong!'
         }
 
-api.add_resource(Ping, '/ping')
+api.add_resource(Users, '/ping')
