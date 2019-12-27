@@ -1,6 +1,6 @@
+import os 
 from flask import Flask, jsonify
 from flask_restful import Resource, Api
-import os 
 from flask_sqlalchemy import SQLAlchemy
 
 #instantiate the app
@@ -24,10 +24,8 @@ class User(db.Model):
     active = db.Column(db.Boolean(), default=True, nullable=False)
 
     def __init__(self, username, email):
-        
-
-
-
+        self.username = username
+        self.email = email
 
 class Ping(Resource):
 
@@ -37,7 +35,7 @@ class Ping(Resource):
             'message': 'pong!'
         }
 
-# import sys
-# print(app.config, file=sys.stderr)
+import sys
+print(app.config, file=sys.stderr)
 
 api.add_resource(Ping, '/ping')
